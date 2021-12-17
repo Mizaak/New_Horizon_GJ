@@ -58,9 +58,9 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        pauseCanvas.SetActive(false);
+        /*pauseCanvas.SetActive(false);
         pausePanel.SetActive(false);
-        optionsPanel.SetActive(false);
+        optionsPanel.SetActive(false);*/
     }
 
     private void Update()

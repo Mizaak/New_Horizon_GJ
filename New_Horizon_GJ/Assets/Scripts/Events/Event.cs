@@ -75,8 +75,8 @@ public struct ChoicheValues
     string choicheText;
     public string ChoicheText { get { return choicheText; } }
     [SerializeField]
-    Event choicheEvent;
-    public Event ChoicheEvent { get { return choicheEvent; } }
+    Interaction choicheInteraction;
+    public Interaction ChoicheInteraction { get { return choicheInteraction; } }
     [SerializeField]
     bool choicheAvaiable;
     public bool ChoicheAvaiable { get { return choicheAvaiable; } }

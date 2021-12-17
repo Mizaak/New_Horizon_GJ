@@ -53,14 +53,14 @@ public class DialogueManager : MonoBehaviour
         }*/
     }
 
-    public void RunEvent(Event eventToRun)
+    public void RunEvent(Interaction interactionToRun)
     {
-        if (eventToRun)
+        if (interactionToRun)
         {
             /*player.StopPlayer();
-            player.isInteracting = true;
-            actualEventCount = 0;
-            actualEvent = eventToRun;*/
+            player.isInteracting = true;*/
+            actualInteractionCount = 0;
+            actualInteraction = interactionToRun;
             ContinueEvent();
         }
         else
@@ -84,7 +84,7 @@ public class DialogueManager : MonoBehaviour
                         canPause = false;
                         canProgress = false;
                         StartCoroutine(DelayInput());
-                        //UIManager.instance.PlayDialogue(actualEvent);
+                        UIManager.instance.PlayDialogue(actualEvent);
                         waitingInput = true;
                         actualInteractionCount++;
 
@@ -94,13 +94,13 @@ public class DialogueManager : MonoBehaviour
                         canPause = false;
                         canProgress = false;
                         StartCoroutine(DelayInput());
-                        //UIManager.instance.OpenChoicheCanvas(actualAction);
+                        UIManager.instance.OpenChoicheCanvas(actualEvent);
 
                         break;
                     case ActionTypeEnum.Teleport:
 
-                        //UIManager.instance.CloseDialogueCanvas();
-                        //UIManager.instance.CloseChoicheCanvas();
+                        UIManager.instance.CloseDialogueCanvas();
+                        UIManager.instance.CloseChoicheCanvas();
                         Teleport(actualEvent);
                         //CameraRig.instance.SetArea(actualAction.GameAreaTarget);
                         actualInteractionCount++;
@@ -109,8 +109,8 @@ public class DialogueManager : MonoBehaviour
                         break;
                     case ActionTypeEnum.SetNewEvent:
 
-                        //UIManager.instance.CloseDialogueCanvas();
-                        //UIManager.instance.CloseChoicheCanvas();
+                        UIManager.instance.CloseDialogueCanvas();
+                        UIManager.instance.CloseChoicheCanvas();
 
                         SetNewEventToInteractable(actualEvent.NewEventToSet, actualEvent.InteractableToChange);
                         actualInteractionCount++;
@@ -120,8 +120,8 @@ public class DialogueManager : MonoBehaviour
                     case ActionTypeEnum.Delay:
 
                         canPause = false;
-                        //UIManager.instance.CloseDialogueCanvas();
-                        //UIManager.instance.CloseChoicheCanvas();
+                        UIManager.instance.CloseDialogueCanvas();
+                        UIManager.instance.CloseChoicheCanvas();
                         StartCoroutine(DelayEvent(actualEvent));
 
                         break;
@@ -142,8 +142,8 @@ public class DialogueManager : MonoBehaviour
         actualInteraction = null;
         actualInteractionCount = 0;
         waitingInput = false;
-        //UIManager.instance.CloseDialogueCanvas();
-        //UIManager.instance.CloseChoicheCanvas();
+        UIManager.instance.CloseDialogueCanvas();
+        UIManager.instance.CloseChoicheCanvas();
     }
 
     public void SetNewEventToInteractable(Event newEvent, string interactableName)
@@ -165,7 +165,7 @@ public class DialogueManager : MonoBehaviour
         {
             canPause = true;
             //UIManager.instance.CloseChoicheCanvas();
-            RunEvent(actualInteraction.Events[actualInteractionCount].ChoicheValues[choiche].ChoicheEvent);
+            RunEvent(actualInteraction.Events[actualInteractionCount].ChoicheValues[choiche].ChoicheInteraction);
         }
     }
 
@@ -203,12 +203,9 @@ public class DialogueManager : MonoBehaviour
 
     public void CloseEvent()
     {
-        /*if (actualAction.Blockable)
-        {
-            canPause = true;
-            UIManager.instance.CloseChoicheCanvas();
-            UIManager.instance.CloseDialogueCanvas();
-            StopEvent();
-        }*/
+        canPause = true;
+        UIManager.instance.CloseChoicheCanvas();
+        UIManager.instance.CloseDialogueCanvas();
+        StopEvent();
     }
 }
