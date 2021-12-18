@@ -14,8 +14,9 @@ public class RoomTransitionController : MonoBehaviour
 
     public delegate void TransitionEvent();
 
-    public TransitionEvent halfComplete;
-    public TransitionEvent fullComplete;
+    public static TransitionEvent halfComplete;
+    public static TransitionEvent fullComplete;
+    public static TransitionEvent start;
 
     // Start is called before the first frame update
     void Start()
@@ -26,22 +27,28 @@ public class RoomTransitionController : MonoBehaviour
         }
         halfComplete += TransitionEventDebug;
         fullComplete += TransitionEventDebug;
+        start += StartTransition;
+        start += TransitionEventDebug;
         StartTransition();
+        image.material.SetColor("Tint", new Color(1, 1, 1, 1));
     }
 
     // Update is called once per frame
     void Update()
     {
+
     }
 
-    public void StartTransition()
+    private void StartTransition()
     {
+        Debug.Log("dofade");
         image.material.DOFade(1f, transitionDurationIn).SetEase(Ease.InOutSine).OnComplete(HalfTransitionCompleted);
     }
 
     private void HalfTransitionCompleted()
     {
         halfComplete();
+        Debug.Log("dofade_2");
         image.material.DOFade(0f, transitionDurationOut).SetEase(Ease.InOutSine).OnComplete(TransitionCompleted);
     }
 
