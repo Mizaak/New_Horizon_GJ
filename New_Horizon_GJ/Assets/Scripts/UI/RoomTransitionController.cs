@@ -12,11 +12,13 @@ public class RoomTransitionController : MonoBehaviour
     private float transitionDurationIn = 2f;
     private float transitionDurationOut = 2f;
 
-    public delegate void TransitionEvent();
+    public delegate void TransitionEvent(int room,GameObject door);
 
     public static TransitionEvent halfComplete;
     public static TransitionEvent fullComplete;
     public static TransitionEvent start;
+
+    public static bool running { get; internal set; }
 
     // Start is called before the first frame update
     void Start()
@@ -25,12 +27,10 @@ public class RoomTransitionController : MonoBehaviour
         {
             Debug.LogWarning("Missing transition image maybe create it dynamically?");
         }
-        halfComplete += TransitionEventDebug;
-        fullComplete += TransitionEventDebug;
+        
         start += StartTransition;
-        start += TransitionEventDebug;
-        StartTransition();
-        image.material.SetColor("Tint", new Color(1, 1, 1, 1));
+        StartTransition(-1, null);
+        image.material.SetColor("_Color", new Color(1, 1, 1, 1));
     }
 
     // Update is called once per frame
@@ -39,26 +39,24 @@ public class RoomTransitionController : MonoBehaviour
 
     }
 
-    private void StartTransition()
+    private void StartTransition(int room, GameObject door)
     {
+        running = true;
         Debug.Log("dofade");
-        image.material.DOFade(1f, transitionDurationIn).SetEase(Ease.InOutSine).OnComplete(HalfTransitionCompleted);
+        image.material.DOFade(1f, transitionDurationIn).SetEase(Ease.InOutSine).OnComplete(() => HalfTransitionCompleted(room,door));
     }
 
-    private void HalfTransitionCompleted()
+    private void HalfTransitionCompleted(int room, GameObject door)
     {
-        halfComplete();
         Debug.Log("dofade_2");
-        image.material.DOFade(0f, transitionDurationOut).SetEase(Ease.InOutSine).OnComplete(TransitionCompleted);
+        image.material.DOFade(0f, transitionDurationOut).SetEase(Ease.InOutSine).OnComplete(() => TransitionCompleted(room, door));
+        halfComplete(room, door);
     }
 
-    private void TransitionCompleted()
+    private void TransitionCompleted(int room, GameObject door)
     {
-        fullComplete();
+        running = false;
+        fullComplete(room,door);
     }
 
-    private void TransitionEventDebug()
-    {
-        Debug.Log("TRANSITION EVENT");
-    }
 }

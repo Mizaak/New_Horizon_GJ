@@ -5,6 +5,11 @@ using UnityEngine;
 public class TransitionTrigger : MonoBehaviour
 {
     // Start is called before the first frame update
+    [SerializeField]
+    private int targetRoom;
+    [SerializeField]
+    private GameObject targetDoor;
+
     void Start()
     {
         
@@ -18,10 +23,9 @@ public class TransitionTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.tag == "Player" && !RoomTransitionController.running)
         {
-            RoomTransitionController.start();
-            Debug.Log("transition trigger enter");
+            RoomTransitionController.start(targetRoom, targetDoor);
         }
     }
 }

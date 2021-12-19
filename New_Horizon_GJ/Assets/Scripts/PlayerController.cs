@@ -9,34 +9,60 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Animator animator;
 
+    private bool canMove = false;
+    public bool CanMove { get => canMove; set => canMove = value; }
+
     private Vector3 playerVelocity;
-    private bool groundedPlayer;
     private float playerSpeed = 2.5f;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        groundedPlayer = controller.isGrounded;
-        playerVelocity.y = 0;
+        Movement();
+    }
 
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        controller.Move(move * Time.deltaTime * playerSpeed);
+    public void SetPosition(Vector3 position)
+    {
+        position.y = 0;
+        Debug.Log(position);
+        controller.enabled = false;
+        controller.transform.localPosition = position;
+        controller.enabled = true;
+    }
 
-        if (move != Vector3.zero)
+    private void Movement()
+    {
+        if (CanMove)
         {
-            gameObject.transform.forward = move;
-            animator.SetBool("Walking",true);
-        }
-        else
-        {
-            animator.SetBool("Walking",false);
-        }
+            playerVelocity.y = 0;
 
-        controller.Move(playerVelocity * Time.deltaTime);
+            Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            controller.Move(move * Time.deltaTime * playerSpeed);
+
+            if (move != Vector3.zero && canMove)
+            {
+                gameObject.transform.forward = move;
+                animator.SetBool("Walking", true);
+            }
+            else
+            {
+                animator.SetBool("Walking", false);
+            }
+            controller.Move(playerVelocity * Time.deltaTime);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!RoomTransitionController.running && other.tag == "Exit")
+        {
+            CanMove = false;
+        }
     }
 }
