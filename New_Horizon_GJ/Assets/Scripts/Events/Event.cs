@@ -17,6 +17,7 @@ public enum Side
     Right
 }
 
+[CreateAssetMenu(fileName = "Event", menuName = "ScriptableObjects/Event", order = 1)]
 public class Event : ScriptableObject
 {
     [SerializeField]

@@ -10,6 +10,8 @@ public class DialogueManager : MonoBehaviour
 
     private bool canProgress;
 
+    private bool interacting;
+
     // General vars
     bool waitingInput = false;
     int actualInteractionCount = 0;
@@ -37,36 +39,32 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
-        /*if (waitingInput && canProgress)
+        if (waitingInput && canProgress)
         {
-            if (Input.GetButtonDown("Interact") && !GameManager.instance.GamePaused)
+            if (Input.GetButtonDown("Interact") /*&& !GameManager.instance.GamePaused*/)
             {
                 waitingInput = false;
                 canPause = true;
                 ContinueEvent();
             }
         }
-
-        if (movePlayer)
-        {
-            MovePlayer();
-        }*/
     }
 
     public void RunEvent(Interaction interactionToRun)
     {
-        if (interactionToRun)
+        if (interactionToRun && !interacting)
         {
             /*player.StopPlayer();
             player.isInteracting = true;*/
+            interacting = true;
             actualInteractionCount = 0;
             actualInteraction = interactionToRun;
             ContinueEvent();
         }
-        else
-        {
-            StopEvent();
-        }
+        //else
+        //{
+           //StopEvent();
+        //}
     }
 
     public void ContinueEvent()
@@ -144,6 +142,7 @@ public class DialogueManager : MonoBehaviour
         waitingInput = false;
         UIManager.instance.CloseDialogueCanvas();
         UIManager.instance.CloseChoicheCanvas();
+        interacting = false;
     }
 
     public void SetNewEventToInteractable(Event newEvent, string interactableName)
@@ -164,7 +163,8 @@ public class DialogueManager : MonoBehaviour
         if (canProgress)
         {
             canPause = true;
-            //UIManager.instance.CloseChoicheCanvas();
+            UIManager.instance.CloseChoicheCanvas();
+            interacting = false;
             RunEvent(actualInteraction.Events[actualInteractionCount].ChoicheValues[choiche].ChoicheInteraction);
         }
     }
@@ -206,6 +206,7 @@ public class DialogueManager : MonoBehaviour
         canPause = true;
         UIManager.instance.CloseChoicheCanvas();
         UIManager.instance.CloseDialogueCanvas();
+        interacting = false;
         StopEvent();
     }
 }

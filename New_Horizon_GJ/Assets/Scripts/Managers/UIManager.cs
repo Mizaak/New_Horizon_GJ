@@ -110,7 +110,7 @@ public class UIManager : MonoBehaviour
 
             int actualPanelInt = 0;
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 2; i++)
             {
                 if (choicheEvent.ChoicheValues.Length > i && choicheEvent.ChoicheValues[i].ChoicheAvaiable)
                 {
@@ -119,9 +119,9 @@ public class UIManager : MonoBehaviour
                     actualPanelInt++;
                 }
 
-                if (actualPanelInt < 2)
+                if (actualPanelInt < 1)
                 {
-                    coichePanels[2].SetActive(false);
+                    coichePanels[1].SetActive(false);
                 }
             }
         }
@@ -130,7 +130,7 @@ public class UIManager : MonoBehaviour
     public void CloseChoicheCanvas()
     {
         choicheCanvas.SetActive(false);
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 2; i++)
         {
             coichePanels[i].SetActive(false);
         }
