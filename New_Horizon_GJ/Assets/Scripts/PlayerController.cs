@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     [SerializeField]
     private Animator animator;
+    [SerializeField]
+    private Vector3 targetPosition;
 
     private bool canMove = false;
     public bool CanMove { get => canMove; set => canMove = value; }
@@ -43,12 +45,12 @@ public class PlayerController : MonoBehaviour
         {
             playerVelocity.y = 0;
 
-            Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            controller.Move(move * Time.deltaTime * playerSpeed);
+            targetPosition = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            controller.Move(targetPosition * Time.deltaTime * playerSpeed);
 
-            if (move != Vector3.zero && canMove)
+            if (targetPosition != Vector3.zero)
             {
-                gameObject.transform.forward = move;
+                gameObject.transform.forward = targetPosition;
                 animator.SetBool("Walking", true);
             }
             else
@@ -56,6 +58,10 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("Walking", false);
             }
             controller.Move(playerVelocity * Time.deltaTime);
+        }
+        else
+        {
+            animator.SetBool("Walking", false);
         }
     }
     private void OnTriggerEnter(Collider other)
