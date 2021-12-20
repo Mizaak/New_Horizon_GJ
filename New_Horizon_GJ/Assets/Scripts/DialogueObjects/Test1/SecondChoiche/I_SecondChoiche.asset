@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6101f4e760562d048881f0d79f0c31bd, type: 3}
+  m_Name: I_SecondChoiche
+  m_EditorClassIdentifier: 
+  events:
+  - {fileID: 11400000, guid: 67cec25a00043e945b58b53de52e4c6c, type: 2}
