@@ -29,8 +29,8 @@ public class RoomTransitionController : MonoBehaviour
         }
         
         start += StartTransition;
-        StartTransition(-1, null);
         image.material.SetColor("_Color", new Color(1, 1, 1, 1));
+        StartTransition(-1, null);
     }
 
     // Update is called once per frame

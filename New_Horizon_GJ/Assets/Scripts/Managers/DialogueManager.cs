@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
 {
+    public delegate void DialogueEvent();
+
+    public static DialogueEvent Stop;
+
     public static DialogueManager instance;
 
     [HideInInspector] public bool canPause;
@@ -143,6 +147,7 @@ public class DialogueManager : MonoBehaviour
         UIManager.instance.CloseDialogueCanvas();
         UIManager.instance.CloseChoicheCanvas();
         interacting = false;
+        Stop();
     }
 
     public void SetNewEventToInteractable(Event newEvent, string interactableName)

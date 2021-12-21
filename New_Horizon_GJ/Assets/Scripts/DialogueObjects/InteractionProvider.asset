@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6ed1a432c7c11f4685ab7cc474622cd, type: 3}
+  m_Name: InteractionProvider
+  m_EditorClassIdentifier: 
+  introBeforeCutscene: {fileID: 11400000, guid: 06f9657c892fa2949bcbf694605ca5ec, type: 2}
+  introBeforeGame_1: {fileID: 11400000, guid: e4e2e381c4394a14baea698ece0623c5, type: 2}

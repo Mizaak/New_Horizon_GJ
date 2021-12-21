@@ -6,8 +6,6 @@ using UnityEngine;
 public class MainMenu : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField]
-    GameObject panel;
 
     void Start()
     {
@@ -22,7 +20,7 @@ public class MainMenu : MonoBehaviour
 
     public void hide(int room, GameObject door)
     {
-        panel.SetActive(false);
+        gameObject.SetActive(false);
         RoomTransitionController.halfComplete -= hide;
     }
 }
