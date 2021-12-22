@@ -16,7 +16,7 @@ MonoBehaviour:
   nameToShow: Kenny
   dialogueToShow: 'The story is not over! Does he find the Light Sword? Does he defeat
     the Darkness?! '
-  speakerSprite: {fileID: 0}
+  speakerSprite: {fileID: 21300000, guid: dbeeec597f1f7eb478f659b169baa3ef, type: 3}
   side: 0
   choicheValues: []
   newEventToSet: {fileID: 0}

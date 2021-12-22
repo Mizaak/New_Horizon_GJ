@@ -28,9 +28,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         currentState = GameState.MAIN_MENU;
-        RoomTransitionController.start += changeRoomStart;
-        RoomTransitionController.halfComplete += changeRoom;
-        RoomTransitionController.fullComplete += changeRoomComplete;
+        RoomTransitionController.start += ChangeRoomStart;
+        RoomTransitionController.halfComplete += ChangeRoom;
+        RoomTransitionController.fullComplete += ChangeRoomComplete;
     }
 
     // Update is called once per frame
@@ -47,12 +47,6 @@ public class GameManager : MonoBehaviour
                 //start dialog with brother
                 break;
             case GameState.VIDEO_REEL:
-                if(!videoPlayer.isPlaying)
-                {
-                    videoPlayer.Play();
-                    videoPlayer.loopPointReached += VideoCompleted;
-                    player.CanMove = false;
-                }
                 break;
             case GameState.INTRO_GAME_1:
                 break;
@@ -76,12 +70,12 @@ public class GameManager : MonoBehaviour
         Debug.Log("start");
         RoomTransitionController.start(-1,null);
         RoomTransitionController.halfComplete += mainMenu.hide;
-        RoomTransitionController.halfComplete += startIntro;
+        RoomTransitionController.halfComplete += StartIntro;
     }
 
-    private void startIntro(int room, GameObject door)
+    private void StartIntro(int room, GameObject door)
     {
-        RoomTransitionController.halfComplete -= startIntro;
+        RoomTransitionController.halfComplete -= StartIntro;
 
         DialogueManager.instance.RunEvent(interactionProvider.IntroBeforeCutscene);
         DialogueManager.Stop += IntroCompleted;
@@ -93,8 +87,21 @@ public class GameManager : MonoBehaviour
     private void IntroCompleted()
     {
         DialogueManager.Stop -= IntroCompleted;
+        videoPlayer.Prepare();
+        RoomTransitionController.start(-1, null);
+        RoomTransitionController.halfComplete += StartVideo;
+    }
 
-        currentState = GameState.VIDEO_REEL;
+    private void StartVideo(int room, GameObject door)
+    {
+        RoomTransitionController.halfComplete -= StartVideo;
+
+        if (!videoPlayer.isPlaying)
+        {
+            videoPlayer.Play();
+            videoPlayer.loopPointReached += VideoCompleted;
+            player.CanMove = false;
+        }
     }
 
     private void VideoCompleted(VideoPlayer source)
@@ -116,7 +123,7 @@ public class GameManager : MonoBehaviour
         currentState = GameState.MINIGAME_1;
     }
 
-    private void changeRoom(int room, GameObject door)
+    private void ChangeRoom(int room, GameObject door)
     {
         if(roomChangeEnabled)
         {
@@ -130,7 +137,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void changeRoomStart(int room, GameObject door)
+    private void ChangeRoomStart(int room, GameObject door)
     {
         if (roomChangeEnabled)
         {
@@ -138,7 +145,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void changeRoomComplete(int room, GameObject door)
+    private void ChangeRoomComplete(int room, GameObject door)
     {
         if (roomChangeEnabled)
         {

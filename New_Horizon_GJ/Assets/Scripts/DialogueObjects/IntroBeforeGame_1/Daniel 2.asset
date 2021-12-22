@@ -15,7 +15,7 @@ MonoBehaviour:
   actionType: 0
   nameToShow: Daniel
   dialogueToShow: "Doesn\u2019t sound convincing, to be honest. "
-  speakerSprite: {fileID: 0}
+  speakerSprite: {fileID: 21300000, guid: d4614e2e7ce7dbd44a01579130060159, type: 3}
   side: 0
   choicheValues: []
   newEventToSet: {fileID: 0}

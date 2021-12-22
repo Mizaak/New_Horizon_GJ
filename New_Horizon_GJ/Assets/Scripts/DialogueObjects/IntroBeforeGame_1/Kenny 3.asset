@@ -16,7 +16,7 @@ MonoBehaviour:
   nameToShow: Kenny
   dialogueToShow: "Well, today I wanted to explore the grove with Ace\u2026I had
     also prepared the map!!! "
-  speakerSprite: {fileID: 0}
+  speakerSprite: {fileID: 21300000, guid: dbeeec597f1f7eb478f659b169baa3ef, type: 3}
   side: 1
   choicheValues: []
   newEventToSet: {fileID: 0}

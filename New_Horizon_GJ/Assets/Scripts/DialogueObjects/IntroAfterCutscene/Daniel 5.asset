@@ -16,7 +16,7 @@ MonoBehaviour:
   nameToShow: Daniel
   dialogueToShow: "Chill, you need to find three components first or the walkie-tal-ahem-the
     Wolves Voice won\u2019t work. "
-  speakerSprite: {fileID: 0}
+  speakerSprite: {fileID: 21300000, guid: d4614e2e7ce7dbd44a01579130060159, type: 3}
   side: 0
   choicheValues: []
   newEventToSet: {fileID: 0}

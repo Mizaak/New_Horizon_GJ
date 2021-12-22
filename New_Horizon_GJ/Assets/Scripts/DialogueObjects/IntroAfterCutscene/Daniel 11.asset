@@ -16,7 +16,7 @@ MonoBehaviour:
   nameToShow: Daniel
   dialogueToShow: "The Sun Slab is in the shelter of the Sun King but to find it,
     you need shadows. Ironic, isn\u2019t it? "
-  speakerSprite: {fileID: 0}
+  speakerSprite: {fileID: 21300000, guid: d4614e2e7ce7dbd44a01579130060159, type: 3}
   side: 0
   choicheValues: []
   newEventToSet: {fileID: 0}

@@ -16,7 +16,7 @@ MonoBehaviour:
   nameToShow: Daniel
   dialogueToShow: "Well, you need two silver fangs of the Giant Wolves and the Sun
     Slab! You know, the Sun Slab it\u2019s very rare and-"
-  speakerSprite: {fileID: 0}
+  speakerSprite: {fileID: 21300000, guid: d4614e2e7ce7dbd44a01579130060159, type: 3}
   side: 0
   choicheValues: []
   newEventToSet: {fileID: 0}

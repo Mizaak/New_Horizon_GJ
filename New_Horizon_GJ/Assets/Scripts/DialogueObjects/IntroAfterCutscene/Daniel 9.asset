@@ -17,7 +17,7 @@ MonoBehaviour:
   dialogueToShow: "Okay, so\u2026the first fang is where every family meets and comes
     out with a full belly, the last one is under one of the Moon Prince\u2019s favorite
     hats\u2026 "
-  speakerSprite: {fileID: 0}
+  speakerSprite: {fileID: 21300000, guid: d4614e2e7ce7dbd44a01579130060159, type: 3}
   side: 0
   choicheValues: []
   newEventToSet: {fileID: 0}

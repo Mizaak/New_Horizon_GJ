@@ -16,7 +16,7 @@ MonoBehaviour:
   nameToShow: Daniel
   dialogueToShow: 'Anyway--the Moon told me that she knows where to find these legendary
     items! '
-  speakerSprite: {fileID: 0}
+  speakerSprite: {fileID: 21300000, guid: d4614e2e7ce7dbd44a01579130060159, type: 3}
   side: 0
   choicheValues: []
   newEventToSet: {fileID: 0}
